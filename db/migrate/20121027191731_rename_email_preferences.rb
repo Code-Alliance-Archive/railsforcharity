@@ -4,6 +4,6 @@ class RenameEmailPreferences < ActiveRecord::Migration
     remove_column :email_preferences, :setting_value
     rename_table :email_preferences, :preferences
 
-    add_column :preferences, :properties
+    add_column :preferences, :properties, :string
   end
 end

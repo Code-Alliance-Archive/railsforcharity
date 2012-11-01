@@ -22,7 +22,7 @@ class Preference < ActiveRecord::Base
 
   EmailTemplate::TYPES.each do |name, _|
     attr_accessible name
-    scope "has_#{name}", lambda { where("properties @> (? => ?)", name, "1") }
+    scope "has_#{name}", lambda { where("properties =  ?", name) }
 
     define_singleton_method "#{name}_users" do
       (self.send "has_#{name}").map(&:user)

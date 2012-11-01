@@ -32,7 +32,7 @@ describe UsersController do
       it 'sets the correct properties' do
         action
         preference = Preference.find_by_user_id_and_entity_id_and_entity_type(user, project.id, 'Project')
-        preference.properties["new_task"].should == "1"
+        preference.properties["new_task"].should_not be_nil
         preference.properties["task_unassigned"].should be_nil
       end
 

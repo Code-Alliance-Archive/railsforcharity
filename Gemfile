@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 # Infrastructure
 gem 'rails', '3.2.7'
-gem 'pg'
+gem 'mysql2'
 gem 'heroku'
 gem 'lol_dba'
 gem 'airbrake'

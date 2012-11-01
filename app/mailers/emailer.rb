@@ -34,7 +34,7 @@ class Emailer < ActionMailer::Base
     subject = subject_template.result(binding)
     @task = task
     @user = recipient
-    mail(:to => @user.email, :subject => "[RailsforCharity] #{subject}") do |format|
+    mail(:to => recipient.email, :subject => "[RailsforCharity] #{subject}") do |format|
       format.html { render "emailer/email_templates/#{email_type}" }
     end
   end
