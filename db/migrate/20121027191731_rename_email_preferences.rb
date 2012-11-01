@@ -4,8 +4,6 @@ class RenameEmailPreferences < ActiveRecord::Migration
     remove_column :email_preferences, :setting_value
     rename_table :email_preferences, :preferences
 
-    execute "CREATE EXTENSION hstore"
-    add_column :preferences, :properties, :hstore
-    execute "CREATE INDEX preferences_properties ON preferences USING GIN(properties)"
+    add_column :preferences, :properties
   end
 end

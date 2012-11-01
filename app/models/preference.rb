@@ -8,11 +8,9 @@
 #  entity_type :string(255)
 #  created_at  :datetime         not null
 #  updated_at  :datetime         not null
-#  properties  :hstore
 #
 
 class Preference < ActiveRecord::Base
-  serialize :properties, ActiveRecord::Coders::Hstore # http://stackoverflow.com/a/11074481/238880
 
   attr_accessible :user, :entity, :entity_id, :entity_type, :user_id, :properties
 
