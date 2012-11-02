@@ -36,6 +36,9 @@ class User < ActiveRecord::Base
     # plural
     :preferences_attributes
 
+  VALID_EMAIL_REGEX = /\A[\w+\-.]+@[a-z\d\-.]+\.[a-z]+\z/i
+  validates :email, format: { with: VALID_EMAIL_REGEX }, uniqueness: { case_sensitive: false }
+
   # Relations
   has_many :authentications, dependent: :destroy
   has_many :user_permissions, dependent: :destroy

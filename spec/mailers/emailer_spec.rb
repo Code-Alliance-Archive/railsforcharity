@@ -1,7 +1,7 @@
 require "spec_helper"
 
 describe Emailer do
-  let(:user) { build(:user) }
+  let(:user) { FactoryGirl.create(:user) }
   let(:project) { build(:project) }
   let(:task) { build(:task, :project => project) }
 

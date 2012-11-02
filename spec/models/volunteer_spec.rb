@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 def create_a_volunteer
-  Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :password => "password", :password_confirmation => "password")
+  Volunteer.create(:name => "FirstName_1 LastName_1", :email => "Person_1@example.com", :password => "password123", :password_confirmation => "password123")
 end
 
 def create_a_valid_password
@@ -9,7 +9,7 @@ def create_a_valid_password
 end
 
 def create_a_second_valid_volunteer
-  Volunteer.create(:name => "FirstName_2 LastName_2", :email => "Person_2@example.com", :password => "password", :password_confirmation => "password")
+  Volunteer.create(:name => "FirstName_2 LastName_2", :email => "Person_2@example.com", :password => "password123", :password_confirmation => "password123")
 end
 
 
@@ -231,119 +231,87 @@ describe "Volunteer" do
     end
   end
 
-  #describe "we should have a password for a user to log in" do
-  #  before do
-  #    @volunteer = create_a_volunteer
-  #  end
-  #
-  #  it "define interface" do
-  #    subject { @volunteer }
-  #    @volunteer.should respond_to(:email)
-  #    @volunteer.should respond_to(:password)
-  #    @volunteer.should respond_to(:password_digest)
-  #    @volunteer.should respond_to(:password_confirmation)
-  #  end
-  #
-  #  it "verify that user with password is valid" do
-  #    @volunteer.should be_valid()
-  #  end
-  #
-  #  describe "when password is not present" do
-  #    before { @volunteer.password = @volunteer.password_confirmation = " " }
-  #    it { @volunteer.should_not be_valid }
-  #  end
-  #
-  #  describe "when password doesn't match confirmation" do
-  #    before { @volunteer.password_confirmation = "mismatch" }
-  #    it { @volunteer.should_not be_valid }
-  #  end
-  #
-  #  describe "when password confirmation is nil" do
-  #    before { @volunteer.password_confirmation = nil }
-  #    it { @volunteer.should_not be_valid }
-  #  end
-  #end
-  #
-  #describe "creation of user should fail without password" do
-  #  before { @volunteer = Volunteer.new(email: "user@example.com") }
-  #
-  #  it "should fail if it doesn't quack like a duck" do
-  #    @volunteer.should_not be_valid()
-  #  end
-  #end
-  #
-  #describe "make sure that password is long enough" do
-  #  before { @volunteer = Volunteer.new(password: "t"*9) }
-  #
-  #
-  #  it "should fail if the password isn't long enough" do
-  #    @volunteer.should_not be_valid()
-  #  end
-  #end
-  #
-  #describe "Volunteer email validation" do
-  #  before do
-  #    @volunteer = create_a_volunteer
-  #  end
-  #
-  #  describe "when email format is invalid" do
-  #    it "should be invalid" do
-  #      addresses = %w[user@foo,com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar+baz.com]
-  #      addresses.each do |invalid_address|
-  #        @volunteer.email = invalid_address
-  #        @volunteer.should_not be_valid
-  #      end
-  #    end
-  #  end
-  #
-  #  describe "when email format is valid" do
-  #    it "should be valid" do
-  #      addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
-  #      addresses.each do |valid_address|
-  #        @volunteer.email = valid_address
-  #        @volunteer.should be_valid
-  #      end
-  #    end
-  #  end
-  #end
-  #
-  #describe "Volunteer with duplicate email must not be saved" do
-  #  before do
-  #    @volunteer = create_a_volunteer
-  #  end
-  #
-  #  it "should fail when trying to validate a volunteer with an email address is already taken" do
-  #      user_with_same_email = @volunteer.dup
-  #      user_with_same_email.save
-  #      user_with_same_email.should_not be_valid
-  #  end
-  #end
-  #
-  #describe "check that password_digest is set after creation" do
-  #  before do
-  #    @volunteer = create_a_volunteer
-  #  end
-  #
-  #  it "should be populated after creation" do
-  #
-  #    assert(@volunteer.password_digest.length != 0)
-  #  end
-  #end
-  #
-  #describe "verify that authentication works" do
-  #  before do
-  #    @volunteer = create_a_volunteer
-  #    @volunteer.save
-  #  end
-  #
-  #  it "should be able to validate volunteer is the same using password" do
-  #    volunteer_for_validation_errors = @volunteer.valid?
-  #    volunteer_for_validation_errors.errors.each_full{|msg| puts msg }
-  #    volunteer = Volunteer.find_by_email(@volunteer.email)
-  #    is_authenticated = volunteer.authenticate(create_a_valid_password)
-  #    assert(is_authenticated)
-  #  end
-  #
-  #end
+  describe "we should have a password for a user to log in" do
+    before do
+      @volunteer = create_a_volunteer
+    end
+
+    it "define interface" do
+      subject { @volunteer }
+      @volunteer.should respond_to(:email)
+      @volunteer.should respond_to(:password)
+      @volunteer.should respond_to(:password_confirmation)
+      @volunteer.should respond_to(:orgs_interested_in_db)
+      @volunteer.should respond_to(:causes_interested_in_db)
+      @volunteer.should respond_to(:languages_interested_in_db)
+      @volunteer.should respond_to(:skills_db)
+      @volunteer.should respond_to(:open_source_projects_db)
+      @volunteer.should respond_to(:company_db)
+      @volunteer.should respond_to(:time_submitted_db)
+      @volunteer.should respond_to(:time_to_commit_db)
+    end
+
+
+    it "verify that user with password is valid" do
+      @volunteer.should be_valid()
+    end
+
+    describe "when password is not present" do
+      before { @volunteer.password = @volunteer.password_confirmation = " " }
+      it { @volunteer.should_not be_valid }
+    end
+
+    describe "when password doesn't match confirmation" do
+      before { @volunteer.password_confirmation = "mismatch" }
+      it { @volunteer.should_not be_valid }
+    end
+
+    describe "when password is nil" do
+      before { @volunteer.password = nil }
+      it { @volunteer.should_not be_valid }
+    end
+
+    describe "should fail if the password isn't long enough" do
+      before { @volunteer.password = @volunteer.password_confirmation = 't'*8 }
+      it { @volunteer.should_not be_valid }
+    end
+  end
+  describe "Volunteer email validation" do
+    before do
+      @volunteer = create_a_volunteer
+    end
+
+    describe "when email format is invalid" do
+      it "should be invalid" do
+        addresses = %w[user@foo,com user_at_foo.org example.user@foo. foo@bar_baz.com foo@bar+baz.com]
+        addresses.each do |invalid_address|
+          @volunteer.email = invalid_address
+          @volunteer.should_not be_valid
+        end
+      end
+    end
+
+    describe "when email format is valid" do
+      it "should be valid" do
+        addresses = %w[user@foo.COM A_US-ER@f.b.org frst.lst@foo.jp a+b@baz.cn]
+        addresses.each do |valid_address|
+          @volunteer.email = valid_address
+          @volunteer.should be_valid
+        end
+      end
+    end
+  end
+
+  describe "Volunteer with duplicate email must not be saved" do
+    before do
+      @volunteer = create_a_volunteer
+    end
+
+    it "should fail when trying to validate a volunteer with an email address is already taken" do
+        user_with_same_email = @volunteer.dup
+        user_with_same_email.save
+        user_with_same_email.should_not be_valid
+    end
+  end
 end
 
