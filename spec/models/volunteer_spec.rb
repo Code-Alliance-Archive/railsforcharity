@@ -21,10 +21,6 @@ describe "Volunteer" do
     2.times { FactoryGirl.create(:ws_email) }
   end
 
-  after(:all) do
-    #WebformSubmittedData.delete_all
-  end
-
   describe "company" do
     before(:each) do
 
