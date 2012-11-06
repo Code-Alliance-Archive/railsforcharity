@@ -3,7 +3,7 @@
 class Volunteer < User
 
   attr_accessible :time_to_commit_db, :orgs_interested_in_db, :causes_interested_in_db, :languages_interested_in_db, :skills_db, :open_source_projects_db, :company_db, :company_db_attributes, :time_submitted_db
-  default_scope select('devise_users.*').joins('left outer join webform_submissions on devise_users.id=webform_submissions.sid').order('submitted DESC')
+  default_scope proc { select('devise_users.*').joins('left outer join webform_submissions on devise_users.id=webform_submissions.sid').order('submitted DESC') }
 
   scope :by_name, lambda { |name| where("name like ?", '%' + name.to_s + '%')}
   scope :by_email, lambda { |email| where("email like ?", '%' + email.to_s + '%')}

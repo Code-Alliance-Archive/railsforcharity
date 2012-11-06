@@ -47,6 +47,7 @@ gem 'hpricot'
 gem 'taps'
 gem 'hirb'
 gem "bullet", "~> 4.2.0"
+gem 'rabl'
 
 
 # Gems used only for assets and not required
@@ -84,11 +85,12 @@ end
 
 group :test do
   gem 'email_spec', "~> 1.2.1"
-  gem 'cucumber-rails', require: false
+  gem 'cucumber-rails'
   gem 'capybara'
   gem 'database_cleaner'
   gem 'launchy'
   gem 'spork-rails'
+  gem 'capybara-json'
 end
 
 group :production do

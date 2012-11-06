@@ -1,3 +1,5 @@
+#TODO make random_pass a random password
+
 module WebformHelper
 
   class WebformSubmissionHelper

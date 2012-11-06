@@ -10,6 +10,8 @@ Railsforcharity::Application.routes.draw do
     collection { post :save_preferences }
   end
 
+  resources :volunteers
+
   resources :tasks do
     get :new
     post :create
